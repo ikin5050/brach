@@ -1,0 +1,7 @@
+/vis/open OGL
+/vis/viewer/set/viewpointVector 1 1 1
+/vis/drawVolume
+/vis/scene/add hits
+/vis/scene/EndOfEventAction accumulate
+/vis/scene/add/axes
+/vis/scene/add/eventID
