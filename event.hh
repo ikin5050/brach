@@ -1,0 +1,37 @@
+#ifndef EVENT_HH
+#define EVENT_HH
+
+#include "G4UserEventAction.hh"
+#include "G4Event.hh"
+#include "G4Gamma.hh"
+#include "G4Electron.hh"
+
+#include "construction.hh"
+#include "g4root.hh"
+#include "run.hh"
+
+class MyEventAction : public G4UserEventAction
+{
+public:
+  MyEventAction(MyRunAction*);
+  ~MyEventAction();
+
+  std::array<std::array<double, 100>, 100> array = {0.};
+  int x, y;
+
+  virtual void BeginOfEventAction(const G4Event*);
+  virtual void EndOfEventAction(const G4Event*);
+
+  void AddEdep(G4double edep) {fEdep += edep;}
+  void AddGEdep(G4double Gdep) {fGammaDep += Gdep;}
+  void AddAEdep(G4double edep, G4int posX, G4int posY);
+  //int getX(G4double index) {return x;};
+  //int getY(G4double index) {return y;};
+  //std::array<std::array<double, 100>, 100> getArray() {return array;};
+
+private:
+  G4double fEdep;
+  G4double fGammaDep;
+};
+
+#endif
